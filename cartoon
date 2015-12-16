@@ -1,0 +1,18 @@
+<html>
+<head>
+	<tittle></tittle>
+	<script>
+		window.onload = function()
+		{
+			document.onmousemove = function(ev)
+			{
+				var x = ev.clientX / 4;
+				var y = ev.clientY / 4;
+				document.body.backgroundPosition = x = 'px ' + y = 'px';
+			};
+		}
+	</script>
+</head>
+<body style="background: url(fondo.jpg);">
+</body>
+</html>

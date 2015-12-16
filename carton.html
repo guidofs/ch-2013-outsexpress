@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript">
+		alert("asd");
+		window.onload = function()
+		{
+			document.onmousemove = function(ev)
+			{
+			
+				var x = ev.clientX;
+				var y = ev.clientY;
+		//	alert(x + 'px ' + y + 'px');
+				document.body.backgroundPosition = (x + 'px ' + y + 'px');
+			};
+		};
+
+	</script>
+	<tittle></tittle>
+
+</head>
+
+<body style="background: url(fondo.jpg);">
+
+</body>
+</html>
