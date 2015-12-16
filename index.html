@@ -83,7 +83,7 @@
 
 		$setNick.click(function(e)
 		{
-alert("ad");
+
 
 			e.preventDefault();
 
@@ -124,10 +124,7 @@ alert("ad");
 			
 		});
 
-		socket.on('admin', function(data)
-		{
-			$chat.append(data.msg);
-		});
+	
 		/*socket.on('clean',function(e){
 
 			$chat.clear();
