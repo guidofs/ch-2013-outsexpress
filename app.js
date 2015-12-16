@@ -5,9 +5,9 @@ var express = require('express'),
 	nicknames={},
 	onoff = 0,
 	jerarquia = 0;
-server.listen(7000);
-
-
+server.listen(process.env.PORT || 3000, function(){
+  console.log('listening on', http.address().port);
+});
 app.get('/',function(req,resp)
 
 {
