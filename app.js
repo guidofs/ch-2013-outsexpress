@@ -21,7 +21,7 @@ io.sockets.on('connection',function(socket){
 function interna()
 
 {
-	if(onoff==0)
+	if(socket.jerarquia==0)
 	{
 	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 	}
