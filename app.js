@@ -62,6 +62,10 @@ function interna()
 			}
 			
 		}
+		if(onoff==1)
+{
+	io.sockets.emit('admin', {msg:data, nick:socket.nickname});
+}
 		if(socket.jerarquia==1)
 		{
 
