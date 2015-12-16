@@ -83,7 +83,7 @@
 
 		$setNick.click(function(e)
 		{
-
+alert("ad");
 
 			e.preventDefault();
 
@@ -107,7 +107,6 @@
 
 		$messageForm.submit(function(e)
 		{
-			alert("asd");
 			e.preventDefault();
 			if($message.val()!="") socket.emit('sendMessage',$message.val());
 			$message.val('');
