@@ -37,7 +37,11 @@ socket.onoff=1;
 }
 	socket.on('admin',function(data,callback){
 if(data)
-		});
+{
+
+		
+}
+});
 
 	socket.on('newUser',function(data,callback){
 		if(data in nicknames){
