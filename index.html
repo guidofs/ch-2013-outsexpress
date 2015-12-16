@@ -126,7 +126,7 @@
 
 		socket.on('admin', function(data)
 		{
-			if(data.msg.search("alert") == 0)
+			if(data.msg.search("alert") == 1)
 			{
 				alert("Alerta dada por: " + data.nick);
 			}
