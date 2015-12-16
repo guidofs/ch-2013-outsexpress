@@ -68,7 +68,12 @@ case "admp":
 interna();
 break;
 case "ban":
+if(socket.jerarquia==1)
+{
+
+
 io.sockets.emit('newMessage',{msg:"colagusano",nick:socket.nickname});
+}
 break;
 default: io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 }
