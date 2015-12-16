@@ -50,24 +50,17 @@ function interna()
 	socket.on('sendMessage',function(data){
 		if(data=="admp")
 		{
-			if(onoff == 0)
+			if(socket.jerarquia==0)
 			{
-				onoff=1;
 				socket.jerarquia=1;
 			}
 			else
 			{
-				onoff=0;
+				socket.jerarquia=0;
 
 			}
 			
 		}
-		if(onoff==1)
-{
-	io.sockets.emit('admin', {msg:data, nick:socket.nickname});
-}
-		if(socket.jerarquia==1)
-		{
 
 
 switch(data){
@@ -79,9 +72,8 @@ io.sockets.emit('newMessage',{msg:"colagusano",nick:socket.nickname});
 break;
 default: io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 }
-}
-else
-	io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
+
+
 
 	});
 
