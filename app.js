@@ -6,7 +6,7 @@ var express = require('express'),
 	onoff = 0,
 	jerarquia = 0;
 server.listen(process.env.PORT || 3000, function(){
-  console.log('listening on', http.address().port);
+  console.log('listening on', server.address().port);
 });
 app.get('/',function(req,resp)
 
