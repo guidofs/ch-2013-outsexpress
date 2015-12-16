@@ -68,9 +68,80 @@
 
 </div>
 
-<script src="http://localhost:7000/socket.io/socket.io.js"></script>
+<script src="http://http://radiant-beach-4838.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
-	alert("AD");
+	
+	jQuery(function($){
+		var socket = io.connect(); // siempre
+		var $messageForm = $('#sendMessage');
+		var $message = $('#message');
+		var $chat = $('#chat');
+		var $nickname = $('#name');
+		var $user = $('#user');
+		var $setNick = $('#setNick');
+		var $ti = $('#titu');
+
+		$setNick.click(function(e)
+		{
+
+
+			e.preventDefault();
+
+			socket.emit('newUser',$nickname.val(),function(data){
+				if(data)
+				{
+
+						$('#login').hide();
+						$('#content').show();
+						$ti.html("Bienvenido" + $nickname.val());
+				}
+				else
+				{
+					alert("error");
+				}
+			});
+
+		
+
+		});
+
+		$messageForm.submit(function(e)
+		{
+			e.preventDefault();
+			if($message.val()!="") socket.emit('sendMessage',$message.val());
+			$message.val('');
+
+		});
+
+		socket.on('newMessage', function(data)
+		{
+
+	
+				$chat.append(data.nick + ' - ' + data.msg  + '<br / >');		
+
+			
+	
+			
+		});
+
+		socket.on('admin', function(data)
+		{
+			$chat.append(data.msg);
+		});
+		/*socket.on('clean',function(e){
+
+			$chat.clear();
+		});//*/
+		socket.on('uernames', function(data){
+			var usuariosString = "";
+			for(var user in data)
+			{
+				usuariosString += user + '<br / >';
+			}
+				$user.html(usuariosString);
+
+		});
+	});
 </script>
 </body>
 
