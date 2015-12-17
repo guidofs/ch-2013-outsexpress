@@ -27,12 +27,12 @@ function interna()
 	if(socket.onoff==1)
 	{
 socket.onoff=0;
-	io.sockets.emit('admin', {msg:"Admin Off " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
+	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 	}
 	else
 	{
 socket.onoff=1;
-	io.sockets.emit('admin', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
+	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 		}
 }
 	socket.on('admin',function(data,callback){
@@ -53,7 +53,7 @@ if(data)
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
 			var nick = data;
-			for(var x = 0; x <= 1; x++)
+			for(var x = 0; x <= 2; x++)
 		{
 			if(nick == Admin[x])
 			{
@@ -61,10 +61,10 @@ if(data)
 			}
 			else
 			{
-				socket.jerarquia = 0;
+				socket.jerarquia=0;
 			}
 		}
-		
+	
 			updatenick();
 
 		}
@@ -76,11 +76,12 @@ if(data)
 	if(socket.jerarquia == 1 && data == "/gm")
 	{
 		interna();
+		break;
 	}
 	
 	if(socket.onoff==1)
 	{
-	 io.sockets.emit('admin', {msg:data, nick:socket.nickname});
+	 io.sockets.emit('admin', {msg:data + " (ADMIN)", nick:socket.nickname});
 	}
 	else
 	{
