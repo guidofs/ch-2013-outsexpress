@@ -53,23 +53,16 @@ if(data)
 			callback(true);
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
-	
-			for(var x = 0; x <= 1; x++)
+	var nom;
+			if(nom in Admin)
 		{
-			if(data == Admin[x])
-			{
-				socket.jerarquia=1;
-			}
-			else
-			{
-				socket.jerarquia=0;
-			}
+			socket.jerarquia=1;
 		}
-	
+
 			updatenick();
 
-		}
-
+		
+}
 	});
 	  socket.on('disconnect', function() {
     console.log('User disconnected');
