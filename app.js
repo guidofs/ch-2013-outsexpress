@@ -38,7 +38,7 @@ socket.onoff=1;
 		}
 		if(a != "")
 		{
-		io.sockets.emit('alert', {msg:a.substr(4,a.length), nick:socket.nickname, jerarquia:socket.jerarquia});
+		io.sockets.emit('alert', {msg:a.substr(4,a.length));
 
 		}
 }
@@ -88,7 +88,7 @@ if(data)
 	{
 		if(data == "/gm")
 		{
-			interna();
+			interna("");
 		}
 		if(data.substr(0,5)=="alert")
 		{
