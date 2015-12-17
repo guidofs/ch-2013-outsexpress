@@ -70,6 +70,9 @@ if(data)
 		}
 
 	});
+	  socket.on('disconnect', function() {
+    console.log('User disconnected');
+  });
 
 	socket.on('sendMessage',function(data){
 
