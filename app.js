@@ -1,5 +1,4 @@
 var express = require('express'),
-	mongoose = require('mongoose'),
 	app = express(),
 	server = require('http').createServer(app),
 	io = require('socket.io').listen(server),
@@ -7,7 +6,6 @@ var express = require('express'),
 	Admin=['Guido','Joaco'];
 	onoff = 0,
 	admon = 0,
-
 	flag = 0,
 	jerarquia = 0;
 server.listen(process.env.PORT || 3000, function(){
@@ -23,7 +21,7 @@ io.sockets.on('connection',function(socket){
 
 
 
-function interna(a)
+function interna()
 
 {
 	if(socket.onoff==1)
@@ -36,13 +34,7 @@ socket.onoff=0;
 socket.onoff=1;
 	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 		}
-		if(a != "")
-		{
-		io.sockets.emit('alert', {msg:a.substr(4,a.length));
-
-		}
 }
-
 	socket.on('admin',function(data,callback){
 if(data)
 {
@@ -61,20 +53,14 @@ if(data)
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
 			var nick = data;
-			for(var x = 0; x <= 1; x++)
+			for(var x = 0; x <= Admin.length; x++)
 		{
 			if(nick == Admin[x])
 			{
 				socket.jerarquia=1;
-				break;
-			}
-			else
-			{
-					socket.jerarquia = 0;
-					break;
 			}
 		}
-		
+			socket.jerarquia = 0;
 
 			updatenick();
 
@@ -84,24 +70,11 @@ if(data)
 
 	socket.on('sendMessage',function(data){
 
-	if(socket.jerarquia == 1)
+	if(socket.jerarquia == 1 && data == "/gm")
 	{
-		if(data == "/gm")
-		{
-			interna("");
-		}
-		if(data.substr(0,5)=="alert")
-		{
-			interna(data);
-		}
-		if(socket.onoff==0 && data == "/gm")
-	{
-
+		interna();
 	}
-	else
-	{
-
-
+	
 	if(socket.onoff==1)
 	{
 	 io.sockets.emit('admin', {msg:data, nick:socket.nickname});
@@ -110,14 +83,7 @@ if(data)
 	{
 	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 	}
-		}
-		
-	}
-else
-{
-	io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
-}
-
+	
 	});
 
 function updatenick()
@@ -125,4 +91,3 @@ function updatenick()
 	io.sockets.emit('uernames',nicknames);
 }
 });
-//msg.substr
