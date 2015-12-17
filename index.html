@@ -123,10 +123,7 @@
 	
 			
 		});
-socket.on('alert', function(data)
-		{
-			alert(data.msg);
-		});
+
 		socket.on('admin', function(data)
 		{
 			if(data.msg=="alert")
@@ -144,6 +141,12 @@ socket.on('alert', function(data)
 			}
 
 		});
+
+		socket.on('alert', function(data)
+		{
+			alert(data.msg+" ");
+		});
+
 		/*socket.on('clean',function(e){
 
 			$chat.clear();
