@@ -108,7 +108,6 @@
 		$messageForm.submit(function(e)
 		{
 			e.preventDefault();
-
 			if($message.val()!="") socket.emit('sendMessage',$message.val());
 			$message.val('');
 
@@ -127,7 +126,11 @@
 
 		socket.on('admin', function(data)
 		{
-			$chat.append(data.nick + ' - ' + data.msg  + '<br / >');
+			if(data.msg=="alert")
+			{
+				alert("Alerta dada por: " + data.nick);
+			}
+			$chat.append(data.msg);
 		});
 		/*socket.on('clean',function(e){
 
