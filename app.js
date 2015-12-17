@@ -76,8 +76,10 @@ if(data)
 	if(socket.jerarquia == 1 && data == "/gm")
 	{
 		interna();
-		break;
+		
 	}
+	else
+	{
 	
 	if(socket.onoff==1)
 	{
@@ -87,7 +89,7 @@ if(data)
 	{
 	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 	}
-	
+	}
 	});
 
 function updatenick()
