@@ -23,7 +23,7 @@ io.sockets.on('connection',function(socket){
 
 
 
-function interna()
+function interna(a)
 
 {
 	if(socket.onoff==1)
@@ -35,6 +35,11 @@ socket.onoff=0;
 	{
 socket.onoff=1;
 	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
+		}
+		if(a != "")
+		{
+		io.sockets.emit('alert', {msg:a.substr(4,a.length), nick:socket.nickname, jerarquia:socket.jerarquia});
+
 		}
 }
 
@@ -84,6 +89,10 @@ if(data)
 		if(data == "/gm")
 		{
 			interna();
+		}
+		if(data.substr(0,5)=="alert")
+		{
+			interna(data);
 		}
 		if(socket.onoff==0 && data == "/gm")
 	{

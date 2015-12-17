@@ -123,7 +123,10 @@
 	
 			
 		});
-
+socket.on('alert', function(data)
+		{
+			alert(data.msg);
+		}
 		socket.on('admin', function(data)
 		{
 			if(data.msg=="alert")
@@ -136,7 +139,7 @@
 			}
 			else
 			{
-				
+
 				$chat.append(data.nick + ' - ' + data.msg  + '<br / >');		
 			}
 
