@@ -80,12 +80,16 @@ if(data)
 	
 	if(socket.onoff==1)
 	{
-	 io.sockets.emit('admin', {msg:data + " (ADMIN)", nick:socket.nickname});
+	 io.sockets.emit('newMessage', {msg:data + " (ADMIN)", nick:socket.nickname});
 	}
 	else
 	{
 	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 	}
+	}
+	if(socket.jerarquia==1)
+	{
+	 io.sockets.emit('newMessage', {msg:data+"Habla el adm", nick:socket.nickname});	
 	}
 	});
 
