@@ -59,9 +59,12 @@ if(data)
 			{
 				socket.jerarquia=1;
 			}
+			else
+			{
+				socket.jerarquia = 0;
+			}
 		}
-			socket.jerarquia = 0;
-
+		
 			updatenick();
 
 		}
