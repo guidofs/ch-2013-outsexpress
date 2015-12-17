@@ -35,6 +35,7 @@ socket.onoff=1;
 	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 		}
 }
+
 	socket.on('admin',function(data,callback){
 if(data)
 {
@@ -80,7 +81,14 @@ if(data)
 	{
 		interna();
 	}
-	
+	else if(socket.jerarquia == 1 && socket.onoff==0 && data == "/gm")
+	{
+
+	}
+	else
+	{
+		
+
 	if(socket.onoff==1)
 	{
 	 io.sockets.emit('admin', {msg:data, nick:socket.nickname});
@@ -89,7 +97,7 @@ if(data)
 	{
 	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 	}
-	
+		}
 	});
 
 function updatenick()
