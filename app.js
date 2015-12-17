@@ -31,9 +31,10 @@ socket.onoff=0;
 	}
 	else
 	{
-socket.onoff=1;
+	socket.onoff=1;
 	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 		}
+
 }
 	socket.on('admin',function(data,callback){
 if(data)
