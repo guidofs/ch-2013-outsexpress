@@ -80,9 +80,13 @@ if(data)
 							{
 								Login();	
 							}
+						else if(data == "alert")
+						{
+							io.sockets.emit('admin', {msg:"alert", nick:socket.nickname});
+						}
 							else
 							{
-								 io.sockets.emit('newMessage', {msg:"admin", nick:socket.nickname});
+								 io.sockets.emit('newMessage', {msg:"data", nick:socket.nickname});
 							}
 
 		}
