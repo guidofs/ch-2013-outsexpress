@@ -3,7 +3,7 @@ var express = require('express'),
 	server = require('http').createServer(app),
 	io = require('socket.io').listen(server),
 	nicknames={},
-	Admin={'Guido','Joaco'},
+	Admin=['Guido','Joaco'],
 	onoff = 0,
 	admon = 0,
 	flag = 0,
@@ -21,12 +21,12 @@ io.sockets.on('connection',function(socket){
 
 
 
-function interna()
+function Login()
 
 {
 	if(socket.onoff==1)
 	{
-socket.onoff=0;
+	socket.onoff=0;
 	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
 	}
 	else
@@ -70,23 +70,26 @@ if(data)
 
 	socket.on('sendMessage',function(data){
 
-	if(socket.jerarquia == 1 && data == "/gm")
-	{
-		interna();
-		
-	}
-	else
-	{
+		if(socket.jerarquia == 1)
+		{
+						if(data == "gm")
+							{
+								Login();	
+							}
+							else
+							{
+								 io.sockets.emit('newMessage', {msg:"admin", nick:socket.nickname});
+							}
+
+		}
+		else
+		{
+				 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
+		}
+
 	
-	if(socket.onoff==1)
-	{
-	 io.sockets.emit('newMessage', {msg:data + " (ADMIN)", nick:socket.nickname});
-	}
-	else
-	{
-	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
-	}
-	}
+
+
 	});
 
 function updatenick()
