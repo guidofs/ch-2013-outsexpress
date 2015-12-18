@@ -3,7 +3,7 @@ var express = require('express'),
 	server = require('http').createServer(app),
 	io = require('socket.io').listen(server),
 	nicknames={},
-	Admin=['Guido','Joaco'],
+	admin=['Guido','Joaco'],
 	onoff = 0,
 	admon = 0,
 	flag = 0,
@@ -54,9 +54,9 @@ if(data)
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
 
-		for(var x = 0; x <= 2; x++)
+		for(var x = 0; x <= 1; x++)
 		{
-			if(data == Admin[x])
+			if(socket.nickname == admin[x])
 			socket.jerarquia=1;
 		}
 
