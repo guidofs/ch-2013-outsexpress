@@ -24,17 +24,20 @@ io.sockets.on('connection',function(socket){
 function Login()
 
 {
+	var resul = "on"
 	if(socket.onoff==1)
 	{
+		resul ="OFF";
 	socket.onoff=0;
 	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname});
 	}
 	else
 	{
+		resul ="ON"
 	socket.onoff=1;
 	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname});
 		}
-
+		return resul;
 }
 	socket.on('newMessage',function(data,callback){
 if(data)
@@ -87,20 +90,16 @@ if(data)
 							}
 						
 					}
-				else
-					{
-						 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
-					}
 
 					if(data == "gm")
 					{
-						Login();	
+						data = "Login " + Login();
+
 					}		
 			}
-		else
-			{
+		
 				io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
-			}
+			
 	});
 
 function updatenick()
