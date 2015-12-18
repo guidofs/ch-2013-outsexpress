@@ -58,6 +58,7 @@ if(data)
 		{
 			if(socket.nickname == admin[x])
 			socket.jerarquia=1;
+			socket.onoff=0;
 		}
 
 
