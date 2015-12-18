@@ -77,10 +77,6 @@ if(data)
 
 		if(socket.jerarquia == 1)
 			{
-				if(data == "gm")
-					{
-						Login();	
-					}
 				if(socket.onoff==1)
 					{
 					
@@ -92,8 +88,13 @@ if(data)
 					}
 				else
 					{
-						 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
+						 io.sockets.emit('admin', {msg:data, nick:socket.nickname});
 					}
+
+					if(data == "gm")
+					{
+						Login();	
+					}		
 			}
 		else
 			{
