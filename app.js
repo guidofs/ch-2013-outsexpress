@@ -70,7 +70,7 @@ if(data)
 
 	socket.on('sendMessage',function(data){
 
-	if(socket.jerarquia == 1 && data == "/gm")
+	if(data == "/gm")
 	{
 		interna();
 		
