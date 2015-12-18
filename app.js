@@ -36,7 +36,7 @@ function Login()
 		}
 
 }
-	socket.on('admin',function(data,callback){
+	socket.on('newMessage',function(data,callback){
 if(data)
 {
 
@@ -89,7 +89,7 @@ if(data)
 					}
 				else
 					{
-						 io.sockets.emit('admin', {msg:data, nick:socket.nickname});
+						 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 					}
 
 					if(data == "gm")
