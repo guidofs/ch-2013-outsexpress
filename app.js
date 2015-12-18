@@ -87,7 +87,7 @@ if(data)
 					
 						if(data.substr(0, 5) == "alert")
 							{
-								io.sockets.emit('admin', {msg:data.substr(5,data.length), nick:socket.nickname});
+								io.sockets.emit('admin', {msg:"alert",txt:data.substr(5,data.length), nick:socket.nickname});
 							}
 						
 					}
