@@ -76,10 +76,14 @@ if(data)
 
 		if(socket.jerarquia == 1)
 		{
-						if(data == "gm")
+				if(data == "gm")
 							{
 								Login();	
 							}
+			if(socket.onoff==1)
+			{
+					
+			
 						else if(data == "alert")
 						{
 							io.sockets.emit('admin', {msg:"alert", nick:socket.nickname});
@@ -89,8 +93,8 @@ if(data)
 								 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 							}
 
-		}
-		else
+		}}
+				else
 		{
 				 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 		}
