@@ -72,6 +72,7 @@ if(data)
 		
 
 	});
+
 	  socket.on('disconnect', function() {
     console.log('User disconnected');
   });
@@ -84,9 +85,9 @@ if(data)
 				if(socket.onoff==1)
 					{
 					
-						if(data == "alert")
+						if(data.substr(0, 5) == "alert")
 							{
-								io.sockets.emit('admin', {msg:"alert", nick:socket.nickname});
+								io.sockets.emit('admin', {msg:data.substr(5,data.length), nick:socket.nickname});
 							}
 						
 					}
