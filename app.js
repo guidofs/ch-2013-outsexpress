@@ -70,7 +70,7 @@ if(data)
 
 	socket.on('sendMessage',function(data){
 
-	if(socket.jerarquia == 1 && data == "/gm")
+	if(socket.jerarquia === 1 && data == "/gm")
 	{
 		interna();
 		
@@ -84,12 +84,16 @@ if(data)
 	}
 	else
 	{
-	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
+	 io.sockets.emit('newMessage', {msg:data + " (ADMIN)", nick:socket.nickname});
 	}
 	}
 	if(socket.jerarquia==1)
 	{
-	 io.sockets.emit('newMessage', {msg:data+"Habla el adm", nick:socket.nickname});	
+	 io.sockets.emit('admin', {msg:data+"Habla el adm", nick:socket.nickname});	
+	}
+	else
+	{
+		io.sockets.emit('newMessage', {msg:data+"Habla el adm", nick:socket.nickname});
 	}
 	});
 
