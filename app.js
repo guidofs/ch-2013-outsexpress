@@ -54,9 +54,13 @@ if(data)
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
 
-			if(data in Admin)
+		for(var x = 0; x <= 2; x++)
 		{
+			if(data == Admin[x])
 			socket.jerarquia=1;
+		}
+
+
 		}
 
 			updatenick();
