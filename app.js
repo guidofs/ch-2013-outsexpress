@@ -93,7 +93,8 @@ if(data)
 								 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 							}
 
-		}}
+			}
+	}
 				else
 		{
 				 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
