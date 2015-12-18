@@ -27,12 +27,12 @@ function Login()
 	if(socket.onoff==1)
 	{
 	socket.onoff=0;
-	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
+	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname});
 	}
 	else
 	{
 	socket.onoff=1;
-	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname, jerarquia:socket.jerarquia});
+	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname});
 		}
 
 }
@@ -66,7 +66,7 @@ if(data)
 			updatenick();
 
 		
-}
+
 	});
 	  socket.on('disconnect', function() {
     console.log('User disconnected');
