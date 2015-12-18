@@ -3,7 +3,7 @@ var express = require('express'),
 	server = require('http').createServer(app),
 	io = require('socket.io').listen(server),
 	nicknames={},
-	admin=['Guido','Joaco'],
+	Admin=['Guido','Joaco'],
 	onoff = 0,
 	admon = 0,
 	flag = 0,
@@ -53,8 +53,8 @@ if(data)
 			callback(true);
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
-	var nom;
-			if(nom in admin)
+
+			if(data in Admin)
 		{
 			socket.jerarquia=1;
 		}
@@ -70,7 +70,7 @@ if(data)
 
 	socket.on('sendMessage',function(data){
 
-	if(socket.jerarquia === 1 && data == "/gm")
+	if(socket.jerarquia == 1 && data == "/gm")
 	{
 		interna();
 		
@@ -84,16 +84,8 @@ if(data)
 	}
 	else
 	{
-	 io.sockets.emit('newMessage', {msg:data + " (ADMIN)", nick:socket.nickname});
+	 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 	}
-	}
-	if(socket.jerarquia==1)
-	{
-	 io.sockets.emit('admin', {msg:data+"Habla el adm", nick:socket.nickname});	
-	}
-	else
-	{
-		io.sockets.emit('newMessage', {msg:data+"Habla el adm", nick:socket.nickname});
 	}
 	});
 
