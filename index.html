@@ -1,120 +1,167 @@
-<!DOCTYPE html>
-
-
 <html>
+<head>
+
+<style>
+#content{
+	display: none;
+}
+</style>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery.js"></script>
+	<title>
+		Chat pa los pibe
+	</title>
+</head>
 <body>
+<div class="container">
+	<div class="page-header">
+	<h1 id="titu"> Chat <small>Probando bootstrap, node, express y js <a href="" target=""> asd </a> :P</small> </h1>
+	</div>
+<div class="input-group" style="widtg:300px;text-align:center;margin:0 auto;" id="login">
+	<input id="name" type="text"class="form-control input-lg">
 
-    <canvas id="canvas">probbalo guidito</canvas>
+	<span class="btn-group-btn">
+		<button class="btn btn-lg btn-primary" type="button" id="setNick">Ok</button>
+	</span>
 
+</div>
+<div class="alert fade in alert-danger alert-dismissable" data-dismiss="alert" id="login-error" style="display:none;">
+<button type="button" class="close" id="closeAlert">x</button>
+	El nombre de usuario esta en uso, try again
+</div>
+<div id="content" class="row" style="height:70%;">
+	<div class="col-md-2"> </div>
+	<div id="chatContent" class="col-md-6"> 
+	<div class="panel panel-success">
+		<div class="panel-heading"> chat </div>
+		<div id="chat" class="panel-body">
+		</div>
+	<div>
+	<form id="sendMessage" class="input-group" style="text-align:center; margin:0 auto;">
+		<input id="message" class="form-control input-lg" type="text">
+		<span class="input-group-btn">
+			<button class="btn btn-lg btn-primary" type="submit">Enviar</button>
+		</span>
+
+	</form>
+	</div>
+
+	</div>
+
+	</div>
+	<div class="col-md-2">
+	<div class="panel panel-info">
+	<div class="panel-heading">
+	Users
+	</div>
+	<div class="panel-body" id="user">
+
+	</div>
+	</div>
+
+	</div>
+
+</div>
+
+<script src="http://radiant-beach-4838.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
-//notebanco.com
-//La papa
-var Nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-var Tab = new Array(500);
-var canvas = document.getElementById('canvas');
-var context = canvas.getContext('2d');
-canvas.width = 500;
-var radio = 1;
-canvas.height = 500;
-var dragin = false;
-for (var x = 0; x <= 500; x++) {
-    Tab[x] = new Array(500);
-}
-var engage = function(e) {
-    dragin = true;
-    putpoint(e);
-}
-var disengage = function(e) {
-    dragin = false;
-    context.beginPath();
-}
-var putpoint = function(e) {
-        if (dragin) {
+	
+	jQuery(function($){
+		var socket = io.connect(); // siempre
+		var $messageForm = $('#sendMessage');
+		var $message = $('#message');
+		var $chat = $('#chat');
+		var $nickname = $('#name');
+		var $user = $('#user');
+		var $setNick = $('#setNick');
+		var $ti = $('#titu');
 
-            context.lineTo(e.clientX, e.clientY);
-         //   alert(ValorTablero(e.clientX,e.clientY));
-            context.stroke();
-            context.beginPath();
-            context.arc(e.clientX, e.clientY, radio, 0, Math.PI * 2);
-            context.fill();
-            context.beginPaht();
-            context.moveTo(e.clientX, e.clientY);
-        }
-    }
-function ini() {
-
-    // inicializamos vector
-    for (var x = 0; x <= 500; x++) {
-        for (var y = 0; y <= 500; y++) {
-            Tab[x][y] = 0;
-        }
-    }
+		$setNick.click(function(e)
+		{
 
 
-}
-function rand(max) {
-    return Math.floor((Math.random() * max) + 5);
-}
+			e.preventDefault();
 
+			socket.emit('newUser',$nickname.val(),function(data){
+				if(data)
+				{
 
+						$('#login').hide();
+						$('#content').show();
+						$ti.html("Bienvenido" + $nickname.val());
+				}
+				else
+				{
+					alert("error");
+				}
+			});
 
-function ValorTablero(x, y) {
-    return Tab[x][y];
-}
+		
 
+		});
 
-function CargarTablero(x, y, n, cantC) {
-    for (var cx = 0; cx <= cantC; cx++) {
-        for (var cy = 0; cy <= cantC; cy++) {
-            Tab[x + cx][y + cy] = n;
-        }
-    }
-}
-function ExisteCuadrado(x, y, cantC) {
-    var Resultado = false;
-    for (var cx = 0; cx <= cantC; cx++) {
-        for (var cy = 0; cy <= cantC; cy++) {
-            if (Tab[x + cx][y + cy] != 0) {
-                Resultado = true;
-                break;
-            }
-        }
-    }
-    return Resultado;
-}
+		$messageForm.submit(function(e)
+		{
+			e.preventDefault();
+			if($message.val()!="") socket.emit('sendMessage',$message.val());
+			$message.val('');
 
+		});
 
+		socket.on('newMessage', function(data)
+		{
 
-function GenerarNumeros() {
-    var x = -1;
-    var y = -1;
-    var Area = 5;
-    var flag = true;
-//alert(Nums.lenght);
-    for (var k = 1; k <= Nums.length; k++) {
-        do {
-            x = rand(500);
-            y = rand(500);
+	
+				$chat.append(data.nick + ' - ' + data.msg  + '<br / >');		
 
-            flag = ExisteCuadrado(x, y, Area);
+			
+	
+			
+		});
 
-        }
-        while (flag);
-        CargarTablero(x, y, Area);
+		socket.on('admin', function(data)
+		{
+			if(data.msg=="alert")
+			{
+				alert("Alerta dada por: " + data.nick);
+			}
+			if(data.msg=="/gm")
+			{
 
-       context.fillText(k, x, y);
-       context.strokeRect(x, y, Area+10, Area+10);
+			}
+			else
+			{
 
-    }
+				$chat.append(data.nick + ' - ' + data.msg  + '<br / >');		
+			}
 
-}
+		});
 
-ini();
-GenerarNumeros();
-canvas.addEventListener('mousedown', engage);
-canvas.addEventListener('mousemove', putpoint);
-canvas.addEventListener('mouseup', disengage);
+		socket.on('alert', function(data)
+		{
+			alert(data.msg+" ");
+		});
 
+		/*socket.on('clean',function(e){
+
+			$chat.clear();
+		});//*/
+		socket.on('uernames', function(data){
+			var usuariosString = "";
+			for(var user in data)
+			{
+				usuariosString += user + '<br / >';
+			}
+				$user.html(usuariosString);
+
+		});
+	});
 </script>
 </body>
+
 </html>
