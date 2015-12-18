@@ -72,37 +72,32 @@ if(data)
     console.log('User disconnected');
   });
 
-	socket.on('sendMessage',function(data){
+	socket.on('sendMessage',function(data)
+	{
 
 		if(socket.jerarquia == 1)
-		{
-				if(data == "gm")
-							{
-								Login();	
-							}
-			if(socket.onoff==1)
 			{
+				if(data == "gm")
+					{
+						Login();	
+					}
+				if(socket.onoff==1)
+					{
 					
-			
-						else if(data == "alert")
-						{
-							io.sockets.emit('admin', {msg:"alert", nick:socket.nickname});
-						}
-							else
+						if(data == "alert")
+							{
+								io.sockets.emit('admin', {msg:"alert", nick:socket.nickname});
+							}
+						else
 							{
 								 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 							}
-
+					}
 			}
-	}
-				else
-		{
-				 io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
-		}
-
-	
-
-
+		else
+			{
+				io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
+			}
 	});
 
 function updatenick()
