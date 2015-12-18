@@ -28,14 +28,14 @@ function Login()
 	if(socket.onoff==1)
 	{
 		resul ="OFF";
-	socket.onoff=0;
-	io.sockets.emit('newMessage', {msg:"Admin Off " + socket.nickname, nick:socket.nickname});
+		socket.onoff=0;
+
 	}
 	else
 	{
 		resul ="ON"
-	socket.onoff=1;
-	io.sockets.emit('newMessage', {msg:"Admin On " + socket.nickname, nick:socket.nickname});
+		socket.onoff=1;
+
 		}
 		return resul;
 }
