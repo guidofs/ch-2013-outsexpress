@@ -43,7 +43,6 @@ function Login()
 	socket.on('newMessage',function(data,callback){
 if(data)
 {
-
 		
 }
 });
@@ -75,12 +74,6 @@ if(data)
 
 	});
 
-
-    socket.on('disconnect', function () {
-    	nicknames.slice(socket.id,1);
-    	updatenick();
-
-    });
 
 	socket.on('sendMessage',function(data)
 	{

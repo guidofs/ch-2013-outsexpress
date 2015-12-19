@@ -134,8 +134,8 @@
 			if(data.msg=="cls")
 			{
 				$chat.html("");
-//				$chat.val("");
-			//	$chat.reset();
+				$chat.val("");
+				$chat.reset();
 			}
 		});
 
@@ -145,7 +145,6 @@
 		});//*/
 		socket.on('uernames', function(data){
 			var usuariosString = "";
-
 			for(var user in data)
 			{
 				usuariosString += user + '<br / >';
@@ -155,7 +154,7 @@
 		});
 	});
 
-if(window.onbeforeunload = confirmExit)
+if((window.onbeforeunload = confirmExit))
 	{
 		socket.emit('disconnect');
 	}
