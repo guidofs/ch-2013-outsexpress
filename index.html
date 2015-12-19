@@ -153,6 +153,12 @@
 
 		});
 	});
+
+window.onbeforeunload = confirmExit;
+function confirmExit()
+{
+return "Va cerrar esta pagina, revise que haya guardado";
+}
 </script>
 </body>
 
