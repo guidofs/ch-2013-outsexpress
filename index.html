@@ -128,7 +128,7 @@
 		{
 			if(data.msg=="alert")
 			{
-				if($nickname === data.user || data.user === "all")
+				if($nickname == data.user || data.user == "all")
 				{
 					alert(data.nick + ": " + data.txt);
 				}
