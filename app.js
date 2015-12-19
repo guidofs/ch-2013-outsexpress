@@ -91,13 +91,14 @@ if(data)
 	});
 
 function validarString (cadenaAnalizar) {
-	var resultado = {nombre:"", index:0};
-	var nom;
-   for (var i = 0; i< cadenaAnalizar.length - 1; i++) {
+	var resultado = {nombre:"",id:-1};
+	var nom = "";
+   for (var i = 0; i< cadenaAnalizar.length; i++) {
          var caracter = cadenaAnalizar.charAt(i);
         if(caracter == ";")
         {
-        	resultado.index =i+5;
+		resultado.id = i+6;
+
         }
         else
 
@@ -110,7 +111,7 @@ function validarString (cadenaAnalizar) {
 	          }
     	}
 	}
-	resultado.nombre=nombre;
+resultado.nombre=nom
 return resultado; 
 }
 
@@ -125,8 +126,8 @@ return resultado;
 					
 						if(data.substr(0, 5) == "alert")
 							{
-								var resultado = validarString(data.substr(6,data.length));
-								io.sockets.emit('admin', {msg:"alert",user:resultado.nombre,txt:data.substr(resultado.id,data.length), nick:socket.nickname});
+								var res = validarString(data.substr(6,data.length));
+								io.sockets.emit('admin', {msg:"alert",user:res.nombre,txt:data.substr(res.id,data.length), nick:socket.nickname});
 								comando = 1;
 							}
 						if(data.substr(0, 3) == "ban")
