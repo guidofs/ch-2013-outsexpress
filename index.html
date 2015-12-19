@@ -81,9 +81,6 @@
 		var $setNick = $('#setNick');
 		var $ti = $('#titu');
 
-	   $(window).on('beforeunload', function() {
-socket.emit('disconnect');
-    }); 
 		$setNick.click(function(e)
 		{
 
