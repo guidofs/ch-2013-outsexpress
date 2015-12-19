@@ -141,15 +141,7 @@ return resultado;
 								io.sockets.emit('admin', {msg:"cls", nick:socket.nickname});
 								comando = 2;
 							}
-								if(data =="ag")
-								{
-
-									var ele = $('<div></div>')
-  								 	 .attr('id', 'rawr')
-  								 	 .html("se");
-									//var dat = "	<div class='col-md-2'><div class='panel panel-info'><div class='panel-heading'>Users</div><div class='panel-body' id='user'></div></div></div>";
-									io.sockets.emit('admin', {msg:ag,txt:ele, nick:socket.nickname});
-								}
+				
 						
 					}
 

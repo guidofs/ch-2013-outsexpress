@@ -152,16 +152,10 @@
 			}
 			if(data.msg=="cls")
 			{
-				$chat.html("");
-				$chat.val("");
+
 				$chat.reset();
 			}
-			if(data.msg=="ag")
-			{
 
-				$container.append(data.txt);;
-				//$container.innerHTML(data.txt);
-			}
 		});
 
 		/*socket.on('clean',function(e){
