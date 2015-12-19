@@ -7,6 +7,7 @@ var express = require('express'),
 	onoff = 0,
 	admon = 0,
 	flag = 0,
+	id = -1;
 	jerarquia = 0;
 server.listen(process.env.PORT || 3000, function(){
   console.log('listening on', server.address().port);
@@ -54,6 +55,7 @@ if(data)
 		else
 		{
 			callback(true);
+			socket.id = nickname.length;
 			socket.nickname = data;
 			nicknames[socket.nickname] = 1;
 
@@ -73,6 +75,12 @@ if(data)
 
 	});
 
+
+    socket.on('disconnect', function () {
+    	nicknames.slice(socket.id,1);
+    	updatenick();
+
+    });
 
 	socket.on('sendMessage',function(data)
 	{

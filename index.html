@@ -134,8 +134,8 @@
 			if(data.msg=="cls")
 			{
 				$chat.html("");
-				$chat.val("");
-				$chat.reset();
+//				$chat.val("");
+			//	$chat.reset();
 			}
 		});
 
@@ -156,7 +156,7 @@
 
 if(window.onbeforeunload = confirmExit)
 	{
-		alert("ASD");
+		socket.emit('disconnect');
 	}
 function confirmExit()
 {
