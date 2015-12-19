@@ -73,12 +73,6 @@ if(data)
 
 	});
 
-	  socket.on('disconnect', function() {
-
-			nicknames.splice(socket.nickname,1)	
-			updatenick();
-    console.log('User disconnected');
-  });
 
 	socket.on('sendMessage',function(data)
 	{
