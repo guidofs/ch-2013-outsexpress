@@ -20,7 +20,10 @@ resp.sendfile(__dirname + '/index.html')
 
 io.sockets.on('connection',function(socket){
 
+  socket.on('disconnect', function(){
 
+  	io.sockets.emit('newMessage', {msg:"Usuario Desconectado ", nick:socket.nickname});
+  });
 
 function Login()
 
