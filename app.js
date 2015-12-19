@@ -86,6 +86,11 @@ if(data)
 							{
 								io.sockets.emit('admin', {msg:"alert",txt:data.substr(5,data.length), nick:socket.nickname});
 							}
+
+								if(data == "cls")
+							{
+								io.sockets.emit('admin', {msg:"cls", nick:socket.nickname});
+							}
 						
 					}
 
@@ -93,7 +98,8 @@ if(data)
 					{
 						data = "Login " + Login();
 
-					}		
+					}	
+
 			}
 		
 				io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});

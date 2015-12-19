@@ -131,7 +131,10 @@
 				alert(data.nick + ": " + data.txt);
 			}
 
-
+			if(data.msg=="cls")
+			{
+				$message.html("");
+			}
 		});
 
 		/*socket.on('clean',function(e){
