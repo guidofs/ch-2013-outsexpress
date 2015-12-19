@@ -90,7 +90,29 @@ if(data)
 
 	});
 
+function validarString (cadenaAnalizar) {
+	var resultado = {nombre:"", index:0};
+	var nom;
+   for (var i = 0; i< cadenaAnalizar.length; i++) {
+         var caracter = cadenaAnalizar.charAt(i);
+        if(caracter === ";")
+        {
+        	resultado.id=i+5;
+        }
+        else
 
+        {
+	         if( caracter == " ") {
+	            
+	          }  else {
+
+	  			nom += caracter;
+	          }
+    	}
+	}
+	resultado.nombre=nombre;
+return resultado; 
+}
 
 	socket.on('sendMessage',function(data)
 	{
@@ -103,10 +125,15 @@ if(data)
 					
 						if(data.substr(0, 5) == "alert")
 							{
-								io.sockets.emit('admin', {msg:"alert",txt:data.substr(5,data.length), nick:socket.nickname});
+								var resultado = validarString(data.substr(6,data.length));
+								io.sockets.emit('admin', {msg:"alert",user:resultado.nombre,txt:data.substr(resultado.id,data.length), nick:socket.nickname});
 								comando = 1;
 							}
-
+						if(data.substr(0, 3) == "ban")
+							{
+								io.sockets.emit('admin', {msg:"ban",txt:data.substr(4,data.length), nick:socket.nickname});
+								comando = 1;
+							}
 								if(data == "cls")
 							{
 								io.sockets.emit('admin', {msg:"cls", nick:socket.nickname});

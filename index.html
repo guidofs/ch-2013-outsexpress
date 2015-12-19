@@ -128,9 +128,15 @@
 		{
 			if(data.msg=="alert")
 			{
+				if($nickname === data.user || data.user === "all")
+				{
+					alert(data.nick + ": " + data.txt);
+				}
+			}
+		if(data.msg=="ban")
+			{
 				alert(data.nick + ": " + data.txt);
 			}
-
 			if(data.msg=="cls")
 			{
 				$chat.html("");
