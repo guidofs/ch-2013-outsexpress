@@ -5,6 +5,7 @@ var express = require('express'),
 	nicknames={},
 	admin=['Guido','Joaco'],
 	onoff = 0,
+	id = -1;
 	admon = 0,
 	flag = 0,
 
@@ -21,7 +22,8 @@ resp.sendfile(__dirname + '/index.html')
 io.sockets.on('connection',function(socket){
 
   socket.on('disconnect', function(){
-
+	nicknames.slice(socket.id,1);
+	updatenick();
   	io.sockets.emit('newMessage', {msg:"Usuario Desconectado ", nick:socket.nickname});
   });
 
@@ -59,13 +61,16 @@ if(data)
 		{
 			callback(true);
 			socket.nickname = data;
+			socket.id =nicknames.length;  
 			nicknames[socket.nickname] = 1;
+
 
 		for(var x = 0; x <= 1; x++)
 		{
 			if(socket.nickname == admin[x])
 			socket.jerarquia=1;
 			socket.onoff=0;
+
 		}
 
 
