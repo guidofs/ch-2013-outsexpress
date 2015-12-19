@@ -130,9 +130,9 @@
 			if(data.msg=="alert")
 			{
 			var nombre = $nickname;
-			alert(nombre);
+		
 
-				if($nickname == data.user || data.user == "all")
+				if(nombre == data.user || data.user == "all")
 				{
 					alert(data.nick + ": " + data.txt);
 				}
