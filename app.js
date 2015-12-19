@@ -93,7 +93,7 @@ if(data)
 function validarString (cadenaAnalizar) {
 	var resultado = {nombre:"", index:0};
 	var nom;
-   for (var i = 0; i< cadenaAnalizar.length; i++) {
+   for (var i = 0; i< cadenaAnalizar.length - 1; i++) {
          var caracter = cadenaAnalizar.charAt(i);
         if(caracter == ";")
         {
