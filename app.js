@@ -22,9 +22,18 @@ resp.sendfile(__dirname + '/index.html')
 io.sockets.on('connection',function(socket){
 
   socket.on('disconnect', function(){
-	nicknames.slice(socket.id,1);
+	var aux = {};
+	for(name in nicknames)
+	{
+		if(name !== socket.nickname)
+		{
+			aux[name] = 1;
+		}
+	}
+	nicknames.length=0;
+	nicknames = aux;
 	updatenick();
-  	io.sockets.emit('newMessage', {msg:"Usuario Desconectado ", nick:socket.nickname});
+	io.sockets.emit('newMessage', {msg:"Usuario Desconectado  id: " +  socket.id + " " , nick:socket.nickname});
   });
 
 function Login()
