@@ -146,8 +146,6 @@
 		socket.on('uernames', function(data){
 			var usuariosString = "";
 
-			$user.html("");
-
 			for(var user in data)
 			{
 				usuariosString += user + '<br / >';
