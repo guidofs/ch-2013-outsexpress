@@ -95,7 +95,7 @@ function validarString (cadenaAnalizar) {
 	var nom = "";
    for (var i = 0; i< cadenaAnalizar.length; i++) {
          var caracter = cadenaAnalizar.charAt(i);
-        if(caracter == ";")
+        if(caracter == "@")
         {
 		resultado.id = i;
 		break;
