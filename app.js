@@ -145,7 +145,7 @@ return resultado;
 					if(data == "gm")
 					{
 						data = "Login " + Login();
-						comando = 3;
+						comando = 0;
 
 					}	
 
