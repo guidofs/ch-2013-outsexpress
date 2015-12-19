@@ -54,7 +54,6 @@
 	</div>
 
 	</div>
-
 	<div class="col-md-2">
 	<div class="panel panel-info">
 	<div class="panel-heading">
@@ -66,9 +65,6 @@
 	</div>
 
 	</div>
-	<div class="aca">
-	a
-	</div>
 
 </div>
 
@@ -77,7 +73,7 @@
 	
 	jQuery(function($){
 		var socket = io.connect(); // siempre
-		var $container = $('.aca');
+		var $container = $('.container');
 		var $messageForm = $('#sendMessage');
 		var $message = $('#message');
 		var $chat = $('#chat');
@@ -162,7 +158,7 @@
 			}
 			if(data.msg=="ag")
 			{
-				$container.add("<div> asdasda </div>");
+				$container.innerHTML(data.txt);
 			}
 		});
 
