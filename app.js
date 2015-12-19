@@ -132,7 +132,8 @@ return resultado;
 							}
 						if(data.substr(0, 3) == "ban")
 							{
-								io.sockets.emit('admin', {msg:"ban",txt:data.substr(4,data.length), nick:socket.nickname});
+								var res = validarString(data.substr(4,data.length));
+								io.sockets.emit('admin', {msg:"ban",user:res.nombre,txt:data.substr(res.id,data.length), nick:socket.nickname});
 								comando = 1;
 							}
 								if(data == "cls")

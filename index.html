@@ -140,7 +140,14 @@
 			}
 		if(data.msg=="ban")
 			{
-				alert(data.nick + ": " + data.txt);
+					var nombre = $nickname.val();
+		
+
+				if(nombre == data.user)
+				{
+					alert(data.nick + " Te h baneado por: " + data.txt);
+					window.location.href="http://radiant-beach-4838.herokuapp.com/";
+				}
 			}
 			if(data.msg=="cls")
 			{
