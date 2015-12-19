@@ -70,7 +70,7 @@
 
 <script src="http://radiant-beach-4838.herokuapp.com/socket.io/socket.io.js"></script>
 <script>
-	
+
 	jQuery(function($){
 		var socket = io.connect(); // siempre
 		var $messageForm = $('#sendMessage');
@@ -81,6 +81,9 @@
 		var $setNick = $('#setNick');
 		var $ti = $('#titu');
 
+	   $(window).on('beforeunload', function() {
+socket.emit('disconnect');
+    }); 
 		$setNick.click(function(e)
 		{
 
@@ -128,7 +131,7 @@
 		{
 			if(data.msg=="alert")
 			{
-				alert(data.txt + data.nick);
+				alert(data.nick + ": " + data.txt);
 			}
 
 
