@@ -97,7 +97,7 @@ function validarString (cadenaAnalizar) {
          var caracter = cadenaAnalizar.charAt(i);
         if(caracter == ";")
         {
-		resultado.id = i+8;
+		resultado.id = i;
 		break;
         }
         else
@@ -127,13 +127,13 @@ return resultado;
 						if(data.substr(0, 5) == "alert")
 							{
 								var res = validarString(data.substr(6,data.length));
-								io.sockets.emit('admin', {msg:"alert",user:res.nombre,txt:data.substr(res.id,data.length), nick:socket.nickname});
+								io.sockets.emit('admin', {msg:"alert",user:res.nombre,txt:data.substr(res.id+7,data.length), nick:socket.nickname});
 								comando = 1;
 							}
 						if(data.substr(0, 3) == "ban")
 							{
 								var res = validarString(data.substr(4,data.length));
-								io.sockets.emit('admin', {msg:"ban",user:res.nombre,txt:data.substr(res.id,data.length), nick:socket.nickname});
+								io.sockets.emit('admin', {msg:"ban",user:res.nombre,txt:data.substr(res.id+5,data.length), nick:socket.nickname});
 								comando = 1;
 							}
 								if(data == "cls")
