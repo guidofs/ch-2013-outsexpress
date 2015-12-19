@@ -97,7 +97,7 @@ function validarString (cadenaAnalizar) {
          var caracter = cadenaAnalizar.charAt(i);
         if(caracter == ";")
         {
-		resultado.id = i+6;
+		resultado.id = i+8;
 		break;
         }
         else
