@@ -73,6 +73,7 @@
 	
 	jQuery(function($){
 		var socket = io.connect(); // siempre
+		var $container = $('#container');
 		var $messageForm = $('#sendMessage');
 		var $message = $('#message');
 		var $chat = $('#chat');
@@ -145,9 +146,6 @@
 
 				if(nombre == data.user)
 				{
-					 function getip(json){
-    				  alert(json.ip); // alerts the ip address
-   						 }
 					alert(data.nick + " Te h baneado por: " + data.txt);
 					window.location.href="http://radiant-beach-4838.herokuapp.com/";
 				}
@@ -157,6 +155,10 @@
 				$chat.html("");
 				$chat.val("");
 				$chat.reset();
+			}
+			if(data.msg=="ag")
+			{
+				$container.append(data.msg);
 			}
 		});
 
@@ -177,7 +179,7 @@
 
 
 </script>
-<script type="application/javascript" src="http://www.telize.com/jsonip?callback=getip"></script>
+
 </body>
 
 </html>
