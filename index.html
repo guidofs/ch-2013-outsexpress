@@ -158,7 +158,8 @@
 			}
 			if(data.msg=="ag")
 			{
-				$container.innerHTML(data.txt);
+				$container.prepend(data.txt).draggable();
+				//$container.innerHTML(data.txt);
 			}
 		});
 
