@@ -5,7 +5,6 @@ var express = require('express'),
 	nicknames={},
 	admin=['Guido','Joaco'],
 	onoff = 0,
-	id = -1;
 	admon = 0,
 	flag = 0,
 
@@ -33,7 +32,7 @@ io.sockets.on('connection',function(socket){
 	nicknames.length=0;
 	nicknames = aux;
 	updatenick();
-	io.sockets.emit('newMessage', {msg:"Usuario Desconectado  id: " +  socket.id + " " , nick:socket.nickname});
+	io.sockets.emit('newMessage', {msg:"Desconectado" , nick:socket.nickname});
   });
 
 function Login()
@@ -70,7 +69,7 @@ if(data)
 		{
 			callback(true);
 			socket.nickname = data;
-			socket.id =nicknames.length;  
+		
 			nicknames[socket.nickname] = 1;
 
 
@@ -95,6 +94,7 @@ if(data)
 
 	socket.on('sendMessage',function(data)
 	{
+		var comando = 0;
 
 		if(socket.jerarquia == 1)
 			{
@@ -104,11 +104,13 @@ if(data)
 						if(data.substr(0, 5) == "alert")
 							{
 								io.sockets.emit('admin', {msg:"alert",txt:data.substr(5,data.length), nick:socket.nickname});
+								comando = 1;
 							}
 
 								if(data == "cls")
 							{
 								io.sockets.emit('admin', {msg:"cls", nick:socket.nickname});
+								comando = 2;
 							}
 						
 					}
@@ -116,11 +118,13 @@ if(data)
 					if(data == "gm")
 					{
 						data = "Login " + Login();
+						comando = 3;
 
 					}	
 
 			}
 		
+			if(comando===0)
 				io.sockets.emit('newMessage', {msg:data, nick:socket.nickname});
 			
 	});
