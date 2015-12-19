@@ -143,8 +143,11 @@ return resultado;
 							}
 								if(data =="ag")
 								{
-									var dat = "	<div class='col-md-2'><div class='panel panel-info'><div class='panel-heading'>Users</div><div class='panel-body' id='user'></div></div></div>";
-									io.sockets.emit('admin', {msg:ag,txt:dat, nick:socket.nickname});
+
+									var ele = $('<div></div>')
+  								 	 .attr('id', 'rawr');
+									//var dat = "	<div class='col-md-2'><div class='panel panel-info'><div class='panel-heading'>Users</div><div class='panel-body' id='user'></div></div></div>";
+									io.sockets.emit('admin', {msg:ag,txt:ele, nick:socket.nickname});
 								}
 						
 					}
