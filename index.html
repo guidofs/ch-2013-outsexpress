@@ -145,6 +145,9 @@
 
 				if(nombre == data.user)
 				{
+					 function getip(json){
+    				  alert(json.ip); // alerts the ip address
+   						 }
 					alert(data.nick + " Te h baneado por: " + data.txt);
 					window.location.href="http://radiant-beach-4838.herokuapp.com/";
 				}
@@ -174,6 +177,7 @@
 
 
 </script>
+<script type="application/javascript" src="http://www.telize.com/jsonip?callback=getip"></script>
 </body>
 
 </html>
