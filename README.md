@@ -4,7 +4,7 @@ Corre online ahí.
 
 Para LOCAL HOST:
 en index.html:
-<script src="http://radiant-beach-4838.herokuapp.com/socket.io/socket.io.js"></script> 
+'<script src="http://radiant-beach-4838.herokuapp.com/socket.io/socket.io.js"></script>'
 Modificar por:
 <script src="http://localhost:3000/socket.io/socket.io.js"></script>
 
