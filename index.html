@@ -126,10 +126,12 @@
 
 		socket.on('admin', function(data)
 		{
-		
+
 			if(data.msg=="alert")
 			{
-				alert(data.user);
+			var nombre = $nickname;
+			alert(nombre);
+
 				if($nickname == data.user || data.user == "all")
 				{
 					alert(data.nick + ": " + data.txt);
